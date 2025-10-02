@@ -3,83 +3,36 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Luxembourgish Vocabulary Game</title>
+  <title>Lauschter a klick – Trounwiessel</title>
   <style>
     @font-face{
       font-family:'Schoulschreft';
       src:url('https://github.com/albrechtclaire1007/schoulschreft/raw/main/schoulschreft_bold%5B2%5D.TTF') format('truetype');
     }
-    :root{
-      --blue:#1c2d4f;
-      --gold:#f2ac3b;
-      --ok:#16a34a;
-      --bad:#dc2626;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;padding:0;
-      font-family:'Schoulschreft', Arial, sans-serif;
-      background:#fff;min-height:100vh;
-    }
-    .header{
-      background:var(--blue);color:#fff;
-      padding:20px;text-align:center;
-      font-size:24px;font-weight:bold;
-      box-shadow:0 2px 10px rgba(28,45,79,.2);
-    }
-    .container{padding:30px;max-width:1000px;margin:0 auto;}
-    .quiz-word{
-      background:#fff;border:4px solid var(--blue);
-      border-radius:20px;padding:22px 18px;
-      text-align:center;font-size:32px;color:var(--blue);
-      font-weight:bold;margin-bottom:14px;
-      box-shadow:0 6px 20px rgba(28,45,79,.2);
-      display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;
-    }
-    .audio-ui{
-      display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center;
-      margin-bottom:18px;
-    }
-    .replay{
-      background:var(--gold);color:#000;border:none;
-      border-radius:12px;padding:8px 14px;font-size:16px;
-      cursor:pointer;box-shadow:0 3px 10px rgba(242,172,59,.35);
-    }
-    .replay:hover{filter:brightness(.95)}
-    .audio-hint{
-      display:none;text-align:center;background:#fff3cd;border:2px solid #facc15;
-      color:#7c2d12;border-radius:12px;padding:8px 12px;margin:8px auto 14px;
-      max-width:650px;font-size:16px;
-    }
-    .audio-hint button{
-      background:var(--blue);color:#fff;border:none;border-radius:10px;
-      padding:6px 12px;margin-left:8px;cursor:pointer;
-    }
-
-    .image-grid{
-      display:grid;grid-template-columns:repeat(3,1fr);
-      grid-template-rows:repeat(2,1fr);gap:20px;height:500px;
-    }
-    .image-button{
-      border:4px solid var(--gold);border-radius:15px;overflow:hidden;
-      cursor:pointer;transition:.3s all;box-shadow:0 4px 15px rgba(242,172,59,.2);
-      background:#fff;
-    }
-    .image-button:hover{transform:translateY(-3px);box-shadow:0 8px 25px rgba(242,172,59,.4)}
-    .image-button.correct{border-color:#4ade80;background:#dcfce7}
-    .image-button.incorrect{border-color:#ef4444;background:#fef2f2}
-    .image-button img{width:100%;height:100%;object-fit:contain;display:block}
-
-    .feedback{text-align:center;margin-top:16px;font-size:20px;font-weight:bold;min-height:30px}
-    .feedback.correct{color:var(--ok)}
-    .feedback.incorrect{color:var(--bad)}
-
+    :root{ --blue:#1c2d4f; --gold:#f2ac3b; --ok:#16a34a; --bad:#dc2626; }
+    *{ box-sizing:border-box }
+    body{ margin:0; padding:0; font-family:'Schoulschreft',Arial,sans-serif; background:#fff; min-height:100vh; }
+    .header{ background:var(--blue); color:#fff; text-align:center; padding:18px; font-size:24px; font-weight:bold; }
+    .container{ padding:30px; max-width:1000px; margin:0 auto; }
+    .quiz-word{ background:#fff; border:4px solid var(--blue); border-radius:20px; padding:22px 18px;
+      text-align:center; font-size:32px; color:var(--blue); font-weight:bold; margin-bottom:14px;
+      box-shadow:0 6px 20px rgba(28,45,79,.2); display:flex; align-items:center; justify-content:center; gap:12px; flex-wrap:wrap; }
+    .audio-ui{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; justify-content:center; margin-bottom:18px; }
+    .replay{ background:var(--gold); color:#000; border:none; border-radius:12px; padding:8px 14px; font-size:16px; cursor:pointer; box-shadow:0 3px 10px rgba(242,172,59,.35); }
+    .image-grid{ display:grid; grid-template-columns:repeat(3,1fr); grid-template-rows:repeat(2,1fr); gap:20px; height:500px; }
+    .image-button{ border:4px solid var(--gold); border-radius:15px; overflow:hidden; cursor:pointer; transition:.3s all; box-shadow:0 4px 15px rgba(242,172,59,.2); background:#fff; }
+    .image-button:hover{ transform:translateY(-3px); box-shadow:0 8px 25px rgba(242,172,59,.4); }
+    .image-button.correct{ border-color:#4ade80; background:#dcfce7; }
+    .image-button.incorrect{ border-color:#ef4444; background:#fef2f2; }
+    .image-button img{ width:100%; height:100%; object-fit:contain; display:block; }
+    .feedback{ text-align:center; margin-top:16px; font-size:20px; font-weight:bold; min-height:30px }
+    .feedback.correct{ color:var(--ok) } .feedback.incorrect{ color:var(--bad) }
     @media (max-width:768px){
-      .container{padding:15px}
-      .header{font-size:18px;padding:15px}
-      .quiz-word{font-size:24px;padding:18px;margin-bottom:10px}
-      .image-grid{grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(3,1fr);height:450px;gap:15px}
-      .feedback{font-size:18px}
+      .container{ padding:15px }
+      .header{ font-size:18px; padding:15px }
+      .quiz-word{ font-size:24px; padding:18px; margin-bottom:10px }
+      .image-grid{ grid-template-columns:repeat(2,1fr); grid-template-rows:repeat(3,1fr); height:450px; gap:15px }
+      .feedback{ font-size:18px }
     }
   </style>
 </head>
@@ -87,16 +40,11 @@
   <div class="header">Lauschter a klick op dat richtegt Bild.</div>
 
   <div class="container">
-    <div class="quiz-word" id="currentWord">d'Kroun</div>
+    <div class="quiz-word" id="currentWord">Wuert</div>
 
     <div class="audio-ui">
       <audio id="audio" preload="auto"></audio>
-      <button class="replay" id="replayBtn" aria-label="Audio nach eng Kéier ofspillen">🔁 Nach eng Kéier</button>
-    </div>
-
-    <div id="audioHint" class="audio-hint">
-      🔊 Fir den Toun unzeschalten, klick hei eemol.
-      <button id="enableAudioBtn">Toun un</button>
+      <button class="replay" id="replayBtn">🔁 Nach eng Kéier</button>
     </div>
 
     <div class="image-grid">
@@ -130,135 +78,80 @@
   </div>
 
   <script>
-    // Mapping for word -> label + audio URL
-    const words = [
-      { word:'kroun',        text:"d'Kroun",            audio:"https://github.com/albrechtclaire1007/trounwiessel/raw/refs/heads/main/M__kroun.mp3" },
-      { word:'troun',        text:"den Troun",          audio:"https://github.com/albrechtclaire1007/trounwiessel/raw/refs/heads/main/M__troun.mp3" },
-      { word:'groussherzog', text:"de Groussherzog",    audio:"https://github.com/albrechtclaire1007/trounwiessel/raw/refs/heads/main/M__groussherzog.mp3" },
-      { word:'leiw',         text:"de roude Léiw",      audio:"https://github.com/albrechtclaire1007/trounwiessel/raw/refs/heads/main/M__roude%20l%C3%A9iw.mp3" },
-      { word:'palais',       text:"d'Palais",           audio:"https://github.com/albrechtclaire1007/trounwiessel/raw/refs/heads/main/M__palais.mp3" },
-      { word:'schlass',      text:"d'Schlass",          audio:"https://github.com/albrechtclaire1007/trounwiessel/raw/refs/heads/main/M__schlass.mp3" }
-    ];
+    // Shuffle helper
+    function shuffleArray(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]] } return a; }
 
-    let currentQuestionIndex = 0;
-    let score = 0;
-    let isAnswered = false;
-    let audioEnabled = false;
+    // Randomized words (with audio)
+    let words = shuffleArray([
+      { word:'kroun',        text:"d'Kroun",         audio:"https://github.com/albrechtclaire1007/trounwiessel/raw/refs/heads/main/M__kroun.mp3" },
+      { word:'troun',        text:"den Troun",       audio:"https://github.com/albrechtclaire1007/trounwiessel/raw/refs/heads/main/M__troun.mp3" },
+      { word:'groussherzog', text:"de Groussherzog", audio:"https://github.com/albrechtclaire1007/trounwiessel/raw/refs/heads/main/M__groussherzog.mp3" },
+      { word:'leiw',         text:"de roude Léiw",   audio:"https://github.com/albrechtclaire1007/trounwiessel/raw/refs/heads/main/M__roude%20l%C3%A9iw.mp3" },
+      { word:'palais',       text:"d'Palais",        audio:"https://github.com/albrechtclaire1007/trounwiessel/raw/refs/heads/main/M__palais.mp3" },
+      { word:'schlass',      text:"d'Schlass",       audio:"https://github.com/albrechtclaire1007/trounwiessel/raw/refs/heads/main/M__schlass.mp3" }
+    ]);
 
-    const audioEl   = document.getElementById('audio');
+    let currentQuestionIndex = 0, score = 0, isAnswered = false;
+    const audioEl = document.getElementById('audio');
     const replayBtn = document.getElementById('replayBtn');
-    const hint      = document.getElementById('audioHint');
-    const enableBtn = document.getElementById('enableAudioBtn');
 
-    // Try to autoplay and show hint if blocked
     function playCurrentAudio(){
       const src = words[currentQuestionIndex].audio;
       if (audioEl.src !== src) audioEl.src = src;
-      const playPromise = audioEl.play();
-      if (playPromise !== undefined) {
-        playPromise.then(() => {
-          audioEnabled = true;
-          hint.style.display = 'none';
-        }).catch(() => {
-          // Autoplay blocked – show hint once
-          if (!audioEnabled) hint.style.display = 'block';
-        });
-      }
+      audioEl.play().catch(()=>{ /* tap replay if blocked */ });
     }
-
-    enableBtn?.addEventListener('click', () => {
-      audioEnabled = true;
-      hint.style.display = 'none';
-      playCurrentAudio();
-    });
-
-    replayBtn.addEventListener('click', () => {
-      playCurrentAudio();
-    });
+    replayBtn.addEventListener('click', playCurrentAudio);
 
     function updateDisplay(){
-      const current = words[currentQuestionIndex];
-      document.getElementById('currentWord').textContent = current.text;
-
-      // reset buttons
+      const currentWord = words[currentQuestionIndex];
+      document.getElementById('currentWord').textContent = currentWord.text;
       document.querySelectorAll('.image-button').forEach(btn=>{
         btn.classList.remove('correct','incorrect');
         btn.style.pointerEvents='auto';
       });
-
-      // feedback clear
       const fb = document.getElementById('feedback');
       fb.textContent=''; fb.className='feedback';
-
-      isAnswered = false;
-
-      // autoplay the correct audio for this word
+      isAnswered=false;
       playCurrentAudio();
     }
 
     function selectImage(image){
       if (isAnswered) return;
-      const current = words[currentQuestionIndex];
+      const currentWord = words[currentQuestionIndex];
       isAnswered = true;
-
-      document.querySelectorAll('.image-button').forEach(btn=>{
-        btn.style.pointerEvents='none';
-      });
-
+      document.querySelectorAll('.image-button').forEach(btn=>btn.style.pointerEvents='none');
       const fb = document.getElementById('feedback');
 
-      if (current.word === image){
+      if (currentWord.word === image){
         score++;
         document.querySelector(`[data-image="${image}"]`).classList.add('correct');
-        fb.textContent='Richteg! Gutt gemaach!';
-        fb.className='feedback correct';
+        fb.textContent='Richteg! Gutt gemaach!'; fb.className='feedback correct';
       } else {
         document.querySelector(`[data-image="${image}"]`).classList.add('incorrect');
-        document.querySelector(`[data-image="${current.word}"]`).classList.add('correct');
-        fb.textContent='Falsch! Dat richtegt Bild ass markéiert.';
-        fb.className='feedback incorrect';
+        document.querySelector(`[data-image="${currentWord.word}"]`).classList.add('correct');
+        fb.textContent='Falsch! Dat richtegt Bild ass markéiert.'; fb.className='feedback incorrect';
       }
 
       setTimeout(()=>{
         currentQuestionIndex++;
-        if (currentQuestionIndex < words.length){
-          updateDisplay();
-        } else {
-          showFinalScore();
-        }
+        if (currentQuestionIndex < words.length) updateDisplay();
+        else showFinalScore();
       }, 1800);
     }
 
     function showFinalScore(){
-      document.getElementById('currentWord').textContent = 'Quiz fäerdeg!';
+      document.getElementById('currentWord').textContent='Quiz fäerdeg!';
       const fb = document.getElementById('feedback');
-      let msg='';
-      if (score === words.length) msg='Perfekt! Du hues alles richteg gemaach! 🎉';
-      else if (score >= words.length*0.8) msg='Ganz gutt! Weider sou! 👏';
-      else if (score >= words.length*0.5) msg='Net schlecht! Probéier nach emol! 👍';
-      else msg='Probéier nach emol! Übung mécht de Meeschter! 💪';
-      fb.textContent=msg; fb.className='feedback correct';
-
+      fb.textContent = (score===words.length) ? 'Perfekt! 🎉' :
+        (score>=Math.ceil(words.length*0.8)) ? 'Ganz gutt! 👏' :
+        'Probéier nach emol! 👍';
+      fb.className='feedback correct';
       document.querySelector('.image-grid').style.display='none';
-
-      setTimeout(()=>{
-        const btn=document.createElement('button');
-        btn.textContent='Nach emol spillen';
-        btn.style.cssText=`
-          background:#1c2d4f;color:#fff;border:none;border-radius:15px;
-          padding:15px 30px;font-size:18px;font-weight:bold;cursor:pointer;margin-top:20px;font-family:inherit;
-        `;
-        btn.onclick=restartQuiz;
-        document.querySelector('.container').appendChild(btn);
-      }, 800);
-    }
-
-    function restartQuiz(){
-      currentQuestionIndex=0;score=0;isAnswered=false;
-      document.querySelector('.image-grid').style.display='grid';
-      const btn=document.querySelector('.container > button:last-of-type');
-      if (btn) btn.remove();
-      updateDisplay();
+      const btn=document.createElement('button');
+      btn.textContent='Nach emol spillen';
+      btn.style.cssText='background:#1c2d4f;color:#fff;border:none;border-radius:15px;padding:15px 30px;font-size:18px;font-weight:bold;cursor:pointer;margin-top:20px;font-family:inherit;';
+      btn.onclick=()=>location.reload();
+      document.querySelector('.container').appendChild(btn);
     }
 
     // Init
@@ -266,3 +159,4 @@
   </script>
 </body>
 </html>
+
